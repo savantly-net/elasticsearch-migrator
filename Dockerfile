@@ -11,7 +11,5 @@ COPY --from=builder build/snapshot-dependencies/ ./
 COPY --from=builder build/spring-boot-loader/ ./
 COPY --from=builder build/application/ ./
 COPY src/docker/entrypoint.sh entrypoint.sh
-
-RUN ls -al /app/config
 ENV PORT=8080
 ENTRYPOINT ["./entrypoint.sh"]
