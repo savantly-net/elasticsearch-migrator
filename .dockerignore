@@ -1,0 +1,9 @@
+# exclude everything by default
+*
+
+# include only necessary items
+!src
+!build
+!build.gradle
+!settings.gradle
+!gradle*

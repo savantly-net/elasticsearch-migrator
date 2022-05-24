@@ -1,0 +1,22 @@
+FROM gradle:7.4.1-jdk11 as builder
+WORKDIR /app-src
+COPY settings.gradle build.gradle gradlew ./
+COPY gradle ./gradle
+
+RUN ./gradlew dependencies --no-daemon
+COPY src src
+RUN ./gradlew build --no-daemon
+
+WORKDIR /build
+RUN cp /app-src/build/libs/elasticsearch-migrator*-SNAPSHOT.jar app.jar
+RUN java -Djarmode=layertools -jar app.jar extract
+
+FROM adoptopenjdk:11-jre-hotspot
+WORKDIR /app
+COPY --from=builder build/dependencies/ ./
+COPY --from=builder build/snapshot-dependencies/ ./
+COPY --from=builder build/spring-boot-loader/ ./
+COPY --from=builder build/application/ ./
+COPY src/docker/entrypoint.sh entrypoint.sh
+ENV PORT=8080
+ENTRYPOINT ["./entrypoint.sh"]

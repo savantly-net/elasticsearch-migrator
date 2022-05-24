@@ -1,0 +1,21 @@
+PUT test_index_123
+Content-Type: application/json
+
+{
+  "aliases": {
+    "test_index": {}
+  },
+  "mappings": {
+    "properties" : {
+      "name" : {
+        "type" : "keyword"
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": "3",
+      "number_of_replicas": "2"
+    }
+  }
+}
