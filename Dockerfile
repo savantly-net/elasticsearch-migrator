@@ -1,10 +1,10 @@
-FROM gradle:7.4.1-jdk11 as builder
+FROM gradle:7.4.1-jdk17 as builder
 
 WORKDIR /build
 COPY build/libs/elasticsearch-migrator*-SNAPSHOT.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
-FROM adoptopenjdk:11-jre-hotspot
+FROM eclipse-temurin:17-alpine
 WORKDIR /app
 COPY --from=builder build/dependencies/ ./
 COPY --from=builder build/snapshot-dependencies/ ./
