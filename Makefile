@@ -29,6 +29,7 @@ docker-build:
 	docker buildx build \
 		--load \
 		--platform=linux/amd64 \
+       	-t ${IMAGE_WITH_VERSION} \
        	-t ${IMAGE_WITH_COMMIT} \
         -t ${IMAGE_WITH_BRANCH} \
         -t ${IMAGE_WITH_LATEST} \
@@ -47,6 +48,7 @@ build-image:
 	docker buildx build \
 		--load \
 		--platform=linux/amd64 \
+       	-t ${IMAGE_WITH_VERSION} \
        	-t ${IMAGE_WITH_COMMIT} \
         -t ${IMAGE_WITH_BRANCH} \
         -t ${IMAGE_WITH_LATEST} \
