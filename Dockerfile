@@ -1,7 +1,8 @@
 FROM gradle:7.4.1-jdk17 as builder
 
+ARG ELASTICSEARCH_MIGRATOR_VERSION=1.0.0
 WORKDIR /build
-COPY build/libs/elasticsearch-migrator*-SNAPSHOT.jar app.jar
+COPY build/libs/elasticsearch-migrator-${ELASTICSEARCH_MIGRATOR_VERSION}.jar app.jar
 RUN java -Djarmode=layertools -jar app.jar extract
 
 FROM eclipse-temurin:17-alpine
