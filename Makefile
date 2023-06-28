@@ -77,6 +77,7 @@ docker-compose:
 
 .PHONY: push
 push:
+	@docker push ${IMAGE_WITH_VERSION}
 	@docker push ${IMAGE_WITH_COMMIT}
 	@docker push ${IMAGE_WITH_BRANCH}
 	@docker push ${IMAGE_WITH_LATEST}
