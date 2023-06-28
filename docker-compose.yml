@@ -18,17 +18,3 @@ services:
       interval: 10s
       timeout: 10s
       retries: 10
-
-  esmigrator:
-    image: savantly/elasticsearch-migrator
-    environment:
-      - SPRING_ELASTICSEARCH_URIS=http://elastic:9200
-    ports:
-      - 8080:8080
-    healthcheck:
-      test: ["CMD", "curl", "http://esmigrator:8080/actuator"]
-      interval: 7s
-      retries: 5
-    depends_on:
-      elastic:
-        condition: service_healthy

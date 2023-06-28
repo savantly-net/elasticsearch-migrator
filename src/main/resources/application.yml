@@ -10,3 +10,10 @@ spring:
     - http://localhost:9200
     username: 
     password: 
+
+logging:
+  level:
+    org:
+      elasticsearch.client: TRACE
+      springframework:
+        data: INFO

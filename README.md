@@ -19,3 +19,7 @@ To provide your own migration files, mount the folder containing your migration 
 A rest API is provided to view the migrations -  
 
 [http://localhost:8080/search/migration](http://localhost:8080/search/migration)
+
+
+And a simple query proxy -  
+[http://localhost:8080/search/es/simple?index=es_evolution&q=1](http://localhost:8080/search/es/simple?index=es_evolution&q=1)
