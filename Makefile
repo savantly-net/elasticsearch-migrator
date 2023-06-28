@@ -12,7 +12,7 @@ COMMIT_SHA:=$(shell git rev-parse --short=9 HEAD)
 BRANCH_NAME:=$(shell git rev-parse --abbrev-ref HEAD | tr '/' '-')
 IMAGE_URL:=${REPO}/${SERVICE_NAME}
 
-VERSION:=$(shell awk '/^version/{print $$NF}' ./build.gradle)
+VERSION:=$(shell awk '/^version/{print $$NF}' ./build.gradle | tr -d "'")
 
 IMAGE?=${IMAGE_URL}:${COMMIT_SHA}
 IMAGE_WITH_VERSION?=${IMAGE_URL}:${VERSION}
